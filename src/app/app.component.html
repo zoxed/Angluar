@@ -1,0 +1,91 @@
+<!-- <ul class="nav">
+    <li [class.active]="viewMode =='map'"><a (click)="viewMode ='map'">Map View</a></li>
+    <li [class.active]="viewMode =='list'"><a (click)="viewMode ='list'">List View</a></li>
+</ul>
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'" >Map View Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>otherwise</div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<button (click)="onAdd()">Add</button>
+ <ul>
+
+    <li *ngFor="let course of courses; even as isEven">
+    {{ course.id  }} - {{course.name}}
+    <button (click)="onRemove(course.id)">Remove</button>
+    <button (click)="onChange(course.id)">Update</button>
+
+    </li>
+
+ </ul> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <button (click)="loadCourses()"> Load courses</button>
+ <ul>
+
+    <li *ngFor="let course of courses; trackBy:trackCourse">
+         {{course.name}}
+    </li>
+
+ </ul> -->
+
+<!-- <ng-container *ngIf="courses.length >  0; else noCourses">
+     List of Courses
+ </ng-container>
+ <ng-template [ngif]="courses.length>0" ></ng-template>
+ 
+ <ng-template #noCourses>
+    <div>List Of Courses</div>
+ </ng-template>  -->
+
+<!-- <div *ngIf="courses.length > 0 ; lse noCourses"></div>
+<ng-template [ngif]="courses.length>0">
+    <div>List Of Courses</div>
+</ng-template>
+<ng-template [ngif]="!(courses.length>0)">
+    <div>No Courses</div>
+</ng-template>  -->
+
+
+
+
+
+
+<!-- <button
+[ngStyle]="{
+    'backgroundColor': canSave ?'blue':'gray',
+    'color': canSave ? 'white':'black',
+    'style': canSave ? 'bold':'normal'
+}"
+>
+Save
+</button> -->
+
+<!-- <Span>    
+    {{task?.assignee}}
+</Span> -->
+<!-- <input type="text" [appInputForm]="'uppercase'" > -->
+<!-- <contact-form></contact-form> -->
+<signup-form></signup-form>
