@@ -10,6 +10,10 @@ import { PanelComponent } from './panel/panel.component';
 import { InputFormDirective } from './input-form.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
+import { PostsComponent } from './posts/posts.component';
+import { UserComponent } from './user/user.component';
+import { BlogsComponent } from './blogs/blogs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
     PanelComponent,
     InputFormDirective,
     ContactFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    NewCourseFormComponent,
+    PostsComponent,
+    UserComponent,
+    BlogsComponent
   ],
   imports: [
     BrowserModule,
