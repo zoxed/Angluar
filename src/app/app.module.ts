@@ -1,3 +1,5 @@
+import { ErrorHandler } from '@angular/core';
+import { AppErrorHandler } from './common/validators/app-error-handler';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +42,8 @@ import { PostService } from './services/post.service';
     HttpClientModule
   ],
   providers: [
-    PostService
+    PostService,
+    {provide: ErrorHandler, useClass: AppErrorHandler}
     // CoursesService,
 
   ],

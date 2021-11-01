@@ -1,5 +1,7 @@
+import { BadInput } from './../common/validators/bad-input';
+import { notFoundError } from './../common/validators/not-found-error';
+import { appError } from './../common/validators/app-error';
 import { PostService } from './../services/post.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,17 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit  {
 
-  posts: any = [];
+  posts:any = [];
 
   constructor(public service: PostService) {}
 
 
   ngOnInit(): void {
     this.service.getPosts()
-    .subscribe(response => {this.posts = JSON.parse(JSON.stringify(response)); 
-    }, error => {
-        alert('An unexpected error occured.')
-        console.log(error)
+    .subscribe((response : any) => {this.posts =JSON.parse(JSON.stringify(response )); 
     });
     
   }
@@ -30,46 +29,44 @@ export class PostsComponent implements OnInit  {
     input.value = ''
     
     this.service.createPost(post)
-    .subscribe(response =>
+    .subscribe((response : any)=>
       {
-        post.id = JSON.stringify(response);
+        post.id = JSON.parse(JSON.stringify(response ));
         this.posts.splice(0,0,post)
-        console.log(JSON.stringify(response))
-      }, (error: Response) => {
-        if (error.status === 400) {
-        // this.form.setErrors(error.json());
-        } else {
-          alert('An unexpected error occured.')
-          console.log(error)
-        }
-      })
-  
+        console.log(JSON.parse(JSON.stringify(response )))
+      },
+        (error: appError) => {
+          if ( error instanceof BadInput ) 
+          {
+        // this.form.setErrors(error.originalError); 
+          }
+          else 
+
+          throw error;
+        })
+    
   }
   updatePost(post: any){
   this.service.updatePost(post)
-  .subscribe(response =>
+  .subscribe((response : any)=>
     {
-      console.log(JSON.stringify(response))
-    }, error => {
-      alert('An unexpected error occured.')
-      console.log(error)
-  })
+     console.log(JSON.parse(JSON.stringify(response )))
+    })
 
   }
-  deletePost(post: any)
+  deletePost(post: any) 
   {
-    this.service.deletePost(post.id)
-    .subscribe(response =>
-        {
+    this.service.deletePost(5)
+    .subscribe( 
+      (response : any) => {
           let index = this.posts.indexOf(post);
           this.posts.splice(index, 1); 
-         }, (error: Response) => {
-           if ( error.status === 400 ) {
-            alert('ThisPostHasAlreadyBeenDeleted')            
-           } else {
-             alert('An unexpected error occured');
-             console.log(error)
-           }
-         })
-  }
+         }, 
+            (error: appError) => {
+            if ( error instanceof notFoundError ) 
+              alert('ThisPostHasAlreadyBeenDeleted')
+            else 
+            throw error;
+          })
+    }
 }
