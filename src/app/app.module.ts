@@ -43,6 +43,7 @@ import { PostService } from './services/post.service';
   ],
   providers: [
     PostService,
+    //internally replace the implematations of errorhandling
     {provide: ErrorHandler, useClass: AppErrorHandler}
     // CoursesService,
 
