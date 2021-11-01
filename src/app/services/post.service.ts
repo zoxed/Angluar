@@ -16,37 +16,38 @@ export class PostService {
   constructor(private http : HttpClient) { }
 
 
-  getPosts(){
-    return this.http.get(this.url);
+    getPosts()
+    {
+      return this.http.get(this.url);
     }
 
     createPost(post: any)
     {
     return this.http.post(this.url,
-                           JSON.parse(JSON.stringify(post)))
-                           .pipe( 
-                             catchError((error : Response) => {
-                              return throwError(new BadInput(error.json()));
-                              return throwError(new appError(error.json()), 
-                              )}       ),
-                        )
+                          JSON.parse(JSON.stringify(post)))
+                          .pipe(catchError(this.handleError))
     }
     updatePost(post: any)
     {
-    return this.http.patch(this.url + '/' + post.id,
-                            JSON.parse(JSON.stringify({isRead: true}))) 
+      return this.http.patch(this.url + '/' + post.id,
+                              JSON.parse(JSON.stringify({isRead: true}))) 
+                              .pipe(catchError(this.handleError))
+                           
     }
    
    
     deletePost(id : any){
-    return this.http.delete(this.url + '/' + id)
-    .pipe(
-      catchError((error : Response) => {
-        
+        return this.http.delete(this.url + '/' + id)
+        .pipe(catchError(this.handleError))}
+
+    private handleError( error: Response){
+      if (error.status === 400) 
+        return throwError(new BadInput(error.json()))
+      if (error.status === 404) 
         return throwError(new notFoundError()); 
         return throwError(new appError(error));
-       }),
+      
+}
 
-    )}
   }
 
