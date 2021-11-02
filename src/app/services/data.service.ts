@@ -17,9 +17,9 @@ export class DataService {
     {
       return this.http.get(this.url)
                             .pipe (
-                             map((response :any) => response.json()),
+                             map((response :any) => JSON.parse(JSON.stringify(response)),
                              catchError(this.handleError)
-                                  );
+                                  ));
     }
 
     create(resource: any)
@@ -27,16 +27,16 @@ export class DataService {
     return this.http.post(this.url,
                             JSON.parse(JSON.stringify(resource)))
                             .pipe(
-                             map((response :any) => response.json()),
-                             catchError(this.handleError));
+                             map((response :any) => JSON.parse(JSON.stringify(response)),
+                             catchError(this.handleError)));
     }
     update(resource: any)
     {
       return this.http.patch(this.url + '/' + resource.id,
                               JSON.parse(JSON.stringify({isRead: true}))) 
                               .pipe(
-                               map((response :any) => response.json()),
-                               catchError(this.handleError));
+                               map((response :any) => JSON.parse(JSON.stringify(response)),
+                               catchError(this.handleError)));
                            
     }
    
@@ -44,8 +44,8 @@ export class DataService {
     delete(id : any){
         return this.http.delete(this.url + '/' + id)
                                 .pipe(
-                                 map((response :any) => response.json()),
-                                 catchError(this.handleError));
+                                 map((response :any) => JSON.parse(JSON.stringify(response)),
+                                 catchError(this.handleError)));
     }
 
     private handleError( error: Response){

@@ -25,17 +25,18 @@ export class PostsComponent implements OnInit  {
   createPost(input: HTMLInputElement)
   {
           let post: any = {title: input.value};
+          this.posts.splice(0,0,post);
+
           input.value = ''
           
             this.service.create(post)
                 .subscribe(
-                  newPost =>
-                          {
-                            post.id = newPost.id;
-                            this.posts.splice(0,0,post)
-                            console.log(JSON.parse(JSON.stringify(newPost)))
-                          },
+                  newPost =>{post.id = newPost.id;},
+                          
                   (error: appError) => {
+                          this.posts.splice(0,1);
+
+
                               if ( error instanceof BadInput ) 
                               {
                             // this.form.setErrors(error.originalError); 
@@ -51,21 +52,22 @@ export class PostsComponent implements OnInit  {
           this.service.update(post)
                 .subscribe((updatedPost : any)=>
                       {
-                      console.log(updatedPost )
+                         console.log(updatedPost )
                       })
   }
   deletePost(post: any) 
   {
-          this.service.delete(545)
-                .subscribe( 
-                  () => {
-                      let index = this.posts.indexOf(post);
-                      this.posts.splice(index, 1); 
-                    }, 
-                        (error: appError) => {
-                        if ( error instanceof notFoundError ) 
-                          alert('This Post Has Already Been Deleted')
-                        else throw error;
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1); 
+      
+    this.service.delete(post.id)
+                .subscribe(
+                  null, 
+                  (error: appError) => {
+                    this.posts.splice(index, 0,post);
+                            if ( error instanceof notFoundError ) 
+                                  alert('This Post Has Already Been Deleted')
+                            else throw error;
                       })
   }
 }
