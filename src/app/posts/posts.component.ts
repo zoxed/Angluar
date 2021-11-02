@@ -11,61 +11,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit  {
 
-  posts:any = [];
+    posts:any = [];
 
   constructor(public service: PostService) {}
 
 
-  ngOnInit(): void {
-    this.service.getPosts()
-    .subscribe((response : any) => {this.posts =JSON.parse(JSON.stringify(response )); 
-    });
-    
+  ngOnInit()
+  {
+          this.service.getAll()
+                .subscribe( posts => this.posts = posts);     
   }
 
   createPost(input: HTMLInputElement)
   {
-    let post: any = {title: input.value};
-    input.value = ''
-    
-    this.service.createPost(post)
-    .subscribe((response : any)=>
-      {
-        post.id = JSON.parse(JSON.stringify(response ));
-        this.posts.splice(0,0,post)
-        console.log(JSON.parse(JSON.stringify(response )))
-      },
-        (error: appError) => {
-          if ( error instanceof BadInput ) 
-          {
-        // this.form.setErrors(error.originalError); 
-          }
-          else 
+          let post: any = {title: input.value};
+          input.value = ''
+          
+            this.service.create(post)
+                .subscribe(
+                  newPost =>
+                          {
+                            post.id = newPost.id;
+                            this.posts.splice(0,0,post)
+                            console.log(JSON.parse(JSON.stringify(newPost)))
+                          },
+                  (error: appError) => {
+                              if ( error instanceof BadInput ) 
+                              {
+                            // this.form.setErrors(error.originalError); 
+                              }
+                              else 
 
-          throw error;
-        })
+                              throw error;
+                            })
     
   }
-  updatePost(post: any){
-  this.service.updatePost(post)
-  .subscribe((response : any)=>
-    {
-     console.log(JSON.parse(JSON.stringify(response )))
-    })
-
+  updatePost(post: any)
+  {
+          this.service.update(post)
+                .subscribe((updatedPost : any)=>
+                      {
+                      console.log(updatedPost )
+                      })
   }
   deletePost(post: any) 
   {
-    this.service.deletePost(5)
-    .subscribe( 
-      (response : any) => {
-          let index = this.posts.indexOf(post);
-          this.posts.splice(index, 1); 
-         }, 
-            (error: appError) => {
-            if ( error instanceof notFoundError ) 
-              alert('This Post Has Already Been Deleted')
-            else throw error;
-          })
-    }
+          this.service.delete(545)
+                .subscribe( 
+                  () => {
+                      let index = this.posts.indexOf(post);
+                      this.posts.splice(index, 1); 
+                    }, 
+                        (error: appError) => {
+                        if ( error instanceof notFoundError ) 
+                          alert('This Post Has Already Been Deleted')
+                        else throw error;
+                      })
+  }
 }
