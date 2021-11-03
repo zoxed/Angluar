@@ -1,5 +1,4 @@
 import { BadInput } from './../common/validators/bad-input';
-import { notFoundError } from './../common/validators/not-found-error';
 import { appError } from './../common/validators/app-error';
 import { PostService } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';

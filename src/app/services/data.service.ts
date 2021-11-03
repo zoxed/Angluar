@@ -50,7 +50,7 @@ export class DataService {
           map((response :any) => JSON.parse(JSON.stringify(response)),
           catchError(this.handleError),
           ), retry(3) ) //as the new documentation position where it should the retry method be.
-          // .toPromise()
+          .toPromise()
     }
 
     private handleError( error: Response){
