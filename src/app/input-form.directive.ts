@@ -4,6 +4,7 @@ import { Directive, HostListener, ElementRef, Input } from '@angular/core';
   selector: '[appInputForm]'
 })
 export class InputFormDirective {
+  
   @Input('appInputForm') format:any;
 
   constructor(private el: ElementRef) { }

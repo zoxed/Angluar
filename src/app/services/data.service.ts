@@ -30,6 +30,7 @@ export class DataService {
           map((response :any) => JSON.parse(JSON.stringify(response)),
           catchError(this.handleError)));
     }
+
     update(resource: any)
     {
       return this.http.patch(this.url + '/' + resource.id,
