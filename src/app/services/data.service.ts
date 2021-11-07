@@ -18,8 +18,8 @@ export class DataService {
       return this.http.get(this.url)
       .pipe (
         map((response :any) => JSON.parse(JSON.stringify(response)),
-        catchError(this.handleError)
-        ));
+        catchError(this.handleError))
+        );
     }
 
     create(resource: any)

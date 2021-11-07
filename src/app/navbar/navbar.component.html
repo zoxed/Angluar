@@ -1,8 +1,11 @@
 <ul class="nav nav-tabs ">
-  <li routerLinkActive="active">
-    <a class="nav-link " routerLink="/followers">Followers</a>
+  <li routerLinkActive="active current">
+    <a class="nav-link " 
+    routerLink="/followers" 
+    [queryParams]="{ page: 1, order: 'newest' }"
+    queryParamsHandling="merge">Followers</a>
   </li>
-  <li  routerLinkActive="active">
+  <li  routerLinkActive="active current">
     <a class="nav-link" routerLink="/posts">Posts</a>
   </li>
 </ul>
