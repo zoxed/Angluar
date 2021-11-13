@@ -17,8 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { CourseComponent } from './course.component';
-import { CoursesComponent } from './courses/courses.component';
-import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { InputFormDirective } from './input-form.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
@@ -40,9 +38,6 @@ import { AdminAuthGuard } from './_services/admin-auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
-    // CourseComponent,
-    FavoriteComponent,
     PanelComponent,
     InputFormDirective,
     ContactFormComponent,
