@@ -1,6 +1,6 @@
 import { BadInput } from './../common/validators/bad-input';
 import { appError } from './../common/validators/app-error';
-import { PostService } from './../services/post.service';
+import { PostService } from '../_services/services/post.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
