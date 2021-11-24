@@ -42,10 +42,8 @@ import { AuthGuard } from './_services/admin/auth-guard.service';
     PanelComponent,
     InputFormDirective,
     ContactFormComponent,
-    SignupFormComponent,
     NewCourseFormComponent,
     PostsComponent,
-    UserComponent,
     BlogsComponent,
     AuthorsComponent,
     SummaryPipe,
@@ -60,8 +58,6 @@ import { AuthGuard } from './_services/admin/auth-guard.service';
     NavbarComponent,
     GithubProfileComponent,
     NotFoundComponent,
-    HomeComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
