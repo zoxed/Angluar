@@ -1,4 +1,3 @@
-import { FavoriteChangesEventArgs } from './favorite/favorite.component';
 import { Component } from '@angular/core';
 
 

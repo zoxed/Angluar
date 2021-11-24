@@ -1,9 +1,9 @@
-import { BadInput } from '../../common/validators/bad-input';
-import { appError } from '../../common/validators/app-error';
 import { HttpClient } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, map, retry} from 'rxjs/operators';
-import { notFoundError } from '../../common/validators/not-found-error';
+import { appError } from 'src/app/_common/validators/app-error';
+import { BadInput } from 'src/app/_common/validators/bad-input';
+import { notFoundError } from 'src/app/_common/validators/not-found-error';
 
 
 export class DataService {
